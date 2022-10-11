@@ -48,6 +48,57 @@ window.addEventListener('scroll', scrollHeader)
 
 
 /*=============== CALCULATE JS ===============*/
+const calculateForm = document.getElementById('calculate-form'),
+      calculateCm = document.getElementById('calculate-cm'),
+      calculateKg = document.getElementById('calculate-kg'),
+      calculateMessage = document.getElementById('calculate-message')
 
+const calculateBmi = (e) =>{
+    e.preventDefault()
+    //comprobar si los campos tienen un valor
+    if(calculateCm.value === ''|| calculateKg.value===''){
+        //añadir y remover color
+        calculateMessage.classList.remove('color-green')
+        calculateMessage.classList.add('color-red')
+
+        //Mostrar mensaje
+        calculateMessage.textContent ='Rellene la altura y el peso 🧑‍💻'
+        
+        //quitar mensaje tres segundos
+        setTimeout(() =>{
+            calculateMessage.textContent = ''
+        },3000)
+    }else{
+        //Formula BMI
+        const cm = calculateCm.value / 100,
+              kg = calculateKg.value,
+              bmi = Math.round(kg / (cm * cm))
+        
+        //muestra tu estado de salud
+        if(bmi < 18.5){
+            //agregar color y mostrar mensaje
+            calculateMessage.classList.add('color-green')
+            calculateMessage.textContent = `Tu BMI es ${bmi} y eres flac@ 😔`
+        }else if(bmi < 25){
+            calculateMessage.classList.add('color-green')
+            calculateMessage.textContent = `Tu BMI es ${bmi} y eres saludable 😁`
+        }else{
+            calculateMessage.classList.add('color-green')
+            calculateMessage.textContent = `Tu BMI es ${bmi} y eres gordo 😢`
+        }
+
+        //limpiar
+        calculateCm.value = ''
+        calculateKg.value = ''
+
+        //quitar mensaje 4 seg
+        setTimeout(() =>{
+            calculateMessage.textContent = ''
+        },4000)
+    }
+}
+
+
+calculateForm.addEventListener('submit', calculateBmi)
 
 /*=============== EMAIL JS ===============*/
