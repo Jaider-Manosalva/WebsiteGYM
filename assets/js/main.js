@@ -78,7 +78,7 @@ const calculateBmi = (e) =>{
         if(bmi < 18.5){
             //agregar color y mostrar mensaje
             calculateMessage.classList.add('color-green')
-            calculateMessage.textContent = `Tu BMI es ${bmi} y eres flac@ 😔`
+            calculateMessage.textContent = `Tu BMI es ${bmi} y eres delgado 😔`
         }else if(bmi < 25){
             calculateMessage.classList.add('color-green')
             calculateMessage.textContent = `Tu BMI es ${bmi} y eres saludable 😁`
