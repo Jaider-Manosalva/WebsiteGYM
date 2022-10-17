@@ -26,7 +26,7 @@
                 <div class="nav__menu" id="nav-menu">
                     <ul class="nav__list">
                         <li class="nav__item">
-                            <a href="#home" class="nav__link">Inicio</a>
+                            <a href="#home" class="nav__link" active-link>Inicio</a>
                         </li>
 
                         <li class="nav__item">
@@ -66,8 +66,8 @@
             <section class="home section" id="home">
                 <div class="home__container container grid">
                     <div class="home__data">
-                        <h2 class="home__subtitle">HAZ TU</h2>
-                        <h1 class="home__title">FORMA DEL CUERPO</h1>
+                        <h2 class="home__subtitle">HAZ TU FORMA</h2>
+                        <h1 class="home__title">DEL CUERPO</h1>
                         <p class="home__description">
                             Aquí te ayudaremos a dar forma y construir tu cuerpo
                             ideal y vive tu vida al máximo.
@@ -280,7 +280,7 @@
                             </a>
                         </article>
 
-                        <article class="pricing__card pricing__card-active">
+                        <article class="pricing__card"> <!--pricing__card-active para activar la compra--> 
                             <header class="pricing__header">
                                 <div class="pricing__shape">
                                     <img src="assets/img/pricing2.png" alt="pricing image" class="pricing__img">
@@ -399,22 +399,24 @@
         <!--==================== FOOTER ====================-->
         <footer class="footer section" id="footer">
             <div class="footer__container container grid">
-                <a href="#" class="footer__logo">
-                    <img src="assets/img/logo-nav.png" alt=""> Home Fitnnes
-                </a>
-                <p class="footer__description">
-                    Suscribete <br> actualizaciones a continuación.
-                </p>
-
-                <form action="" class="footer__form" id="contact-form">
-                    <input type="email" name="user_email" placeholder="Tu Correo" class="footer__input" id="contact-user">
-                    <button type="submit" class="button">
-                        Suscribete
-                    </button>
-                </form>
-
-                <p class="footer__message" id="contact-message"></p>
-
+                <div>
+                    <a href="#" class="footer__logo">
+                        <img src="assets/img/logo-nav.png" alt=""> Home Fitnnes
+                    </a>
+                    <p class="footer__description">
+                        Suscribete <br> actualizaciones a continuación.
+                    </p>
+    
+                    <form action="" class="footer__form" id="contact-form">
+                        <input type="email" name="user_email" placeholder="Tu Correo" class="footer__input" id="contact-user">
+                        <button type="submit" class="button">
+                            Suscribete
+                        </button>
+                    </form>
+    
+                    <p class="footer__message" id="contact-message"></p>
+                </div>
+                
                 <div class="footer__content">
                     <div>
                         <h3 class="footer__title">
@@ -510,13 +512,16 @@
         </footer>
 
         <!--========== SCROLL UP ==========-->
-
+        <a href="#" class="scrollup" id="scroll-up">
+            <i class="ri-arrow-up-line"></i>
+        </a>
+        
 
         <!--=============== SCROLLREVEAL ===============-->
-        <script src=""></script>
+        <script src="assets/js/scrollreveal.min.js"></script>
 
         <!--=============== EMAIL JS ===============-->
-        
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
         
         <!--=============== MAIN JS ===============-->
         <script src="assets/js/main.js"></script>

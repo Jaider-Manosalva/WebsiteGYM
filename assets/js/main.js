@@ -39,13 +39,48 @@ const scrollHeader = () =>{
 window.addEventListener('scroll', scrollHeader)
 
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
+const sections = document.querySelectorAll('section[id]')
+    
+const scrollActive = () =>{
+  	const scrollY = window.pageYOffset
 
+	sections.forEach(current =>{
+		const sectionHeight = current.offsetHeight,
+			  sectionTop = current.offsetTop - 58,
+			  sectionId = current.getAttribute('id'),
+			  sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
+
+		if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
+			sectionsClass.classList.add('active-link')
+		}else{
+			sectionsClass.classList.remove('active-link')
+		}                                                    
+	})
+}
+window.addEventListener('scroll', scrollActive)
 
 /*=============== SHOW SCROLL UP ===============*/ 
-
+const scrollUp = () =>{
+	const scrollUp = document.getElementById('scroll-up')
+    // Cuando el desplazamiento es superior a 350 de altura de la ventana gráfica, agregue la clase mostrar desplazamiento a la etiqueta a con la clase desplazamiento hacia arriba
+	this.scrollY >= 350 ? scrollUp.classList.add('show-scroll')
+						: scrollUp.classList.remove('show-scroll')
+}
+window.addEventListener('scroll', scrollUp)
 
 /*=============== SCROLL REVEAL ANIMATION ===============*/
+const sr = ScrollReveal({
+    origin:'top',
+    distance: '60px',
+    duration: 2500,
+    delay:400,
+})
 
+sr.reveal(`.home__data, .footer__container, .footer__group`)
+sr.reveal(`.home__img`, {delay: 700, origin: 'bottom'})
+sr.reveal(`.logos__img, .program__card, .pricing__card`, {interval:100})
+sr.reveal(`.choose__img, .calculate__content`, {origin: 'left'})
+sr.reveal(`.choose__content, .calculate__img`, {origin: 'right'})
 
 /*=============== CALCULATE JS ===============*/
 const calculateForm = document.getElementById('calculate-form'),
@@ -102,3 +137,46 @@ const calculateBmi = (e) =>{
 calculateForm.addEventListener('submit', calculateBmi)
 
 /*=============== EMAIL JS ===============*/
+const contactForm = document.getElementById('contact-form'),
+      contactMessage = document.getElementById('contact-message'),
+      contactUser = document.getElementById('contact-user')
+
+const sendEmail = (e)=>{
+    e.preventDefault()
+
+    //comprobar si el campo tiene un valor
+    if(contactUser.value == ''){
+        //add and remove color
+        contactMessage.classList.remove('color-green')
+        contactMessage.classList.add('color-red')
+
+        // Mostrar mensaje
+        contactMessage.textContent = 'debes ingresar tu correo electronico'
+
+        //quitar mensaje 3 segundos
+        setTimeout(() =>{
+            contactMessage.textContent = ''
+        }, 3000)
+    }else{
+        //serviceID, templateID, #form, publicKey
+        emailjs.sendForm('service_qrovzu7','template_kiwg3ie','#contact-form','dclkD6xJZrg7ytI9g')
+            .then(() =>{
+                //mostrar mensaje y agregar color
+                contactMessage.classList.add('color-green')
+                contactMessage.textContent = 'Registro exitoso'
+                
+                // Mensaje de eliminación después de 4 segundos
+                setTimeout(() =>{
+                    contactMessage.textContent = ''
+                }, 4000)
+            }, (error) =>{
+                // error de envío de correo
+                alert('¡UPS! ALGO HA FALLADO...', error)
+            })
+
+        // to clear the input field
+        contactUser.value = ''
+    }
+}
+
+contactForm.addEventListener('submit', sendEmail)
